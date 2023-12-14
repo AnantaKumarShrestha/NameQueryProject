@@ -3,6 +3,7 @@ package com.machnet.nameQueryProject.service;
 import com.machnet.nameQueryProject.model.Employee;
 
 import java.util.List;
+import java.util.UUID;
 
 public interface EmployeeService {
 
@@ -10,10 +11,12 @@ public interface EmployeeService {
 
     List<Employee> getAllEmployee();
 
-    List<Employee> getEmployeeAboveSalary();
+    List<Employee> getEmployeeAboveSalary(int salary);
 
     List<Employee> getEmployeeListSortedByName();
 
     List<String> getEmployeeName();
+
+    Employee getEmployeeById(UUID id);
 
 }

@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.UUID;
 
 @Service
 public class EmployeeServiceImpl implements EmployeeService {
@@ -25,8 +26,8 @@ public class EmployeeServiceImpl implements EmployeeService {
     }
 
     @Override
-    public List<Employee> getEmployeeAboveSalary() {
-        return null;
+    public List<Employee> getEmployeeAboveSalary(int salary) {
+        return employeeRepo.getEmployeeBySalary(salary);
     }
 
     @Override
@@ -37,6 +38,11 @@ public class EmployeeServiceImpl implements EmployeeService {
     @Override
     public List<String> getEmployeeName() {
         return employeeRepo.getEmployeeName();
+    }
+
+    @Override
+    public Employee getEmployeeById(UUID id) {
+        return employeeRepo.getEmployeeByID(id);
     }
 
 

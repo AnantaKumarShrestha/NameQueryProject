@@ -11,6 +11,7 @@ import java.util.UUID;
 @NamedQuery(name="above",query = "select e from Employee e where e.salary > :salary")
 @NamedQuery(name="employee", query = "select e from Employee e")
 @NamedQuery(name="employeeName", query = "select e.name from Employee e")
+@NamedQuery(name = "getEmployeeById",query = "SELECT e FROM Employee e WHERE e.id = :id")
 @Data
 @Entity
 public class Employee {
