@@ -1,6 +1,8 @@
 package com.machnet.nameQueryProject.restController;
 
+import com.machnet.nameQueryProject.dto.EmployeeDto;
 import com.machnet.nameQueryProject.model.Employee;
+import com.machnet.nameQueryProject.playLoad.ApiResponse;
 import com.machnet.nameQueryProject.service.EmployeeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -19,40 +21,47 @@ public class EmployeeController {
 
 
     @PostMapping("/employee")
-    public ResponseEntity<Employee> addEmployee(@RequestBody Employee employee){
-         Employee savedEmployee=employeeService.addEmployee(employee);
+    public ResponseEntity<EmployeeDto> addEmployee(@RequestBody EmployeeDto employeeDto){
+         EmployeeDto savedEmployee=employeeService.addEmployee(employeeDto);
          return new ResponseEntity<>(savedEmployee, HttpStatus.CREATED);
     }
 
     @GetMapping("/employees")
-    public ResponseEntity<List<Employee>> getAllEmployee(){
-        List<Employee> employeeList= employeeService.getAllEmployee();
+    public ResponseEntity<List<EmployeeDto>> getAllEmployee(){
+        List<EmployeeDto> employeeList= employeeService.getAllEmployee();
         return new ResponseEntity<>(employeeList,HttpStatus.OK);
     }
 
     @GetMapping("/employees/salary")
-    public ResponseEntity<List<Employee>> getEmployeeBySalary(@RequestParam("salary") int salary){
-        List<Employee> employeeList= employeeService.getEmployeeAboveSalary(salary);
+    public ResponseEntity<List<EmployeeDto>> getEmployeeBySalary(@RequestParam("salary") int salary){
+        List<EmployeeDto> employeeList= employeeService.getEmployeeAboveSalary(salary);
         return new ResponseEntity<>(employeeList,HttpStatus.OK);
     }
 
-    @GetMapping("employees/sort-by-name")
-    public ResponseEntity<List<Employee>> getEmployeeListSortedByName(){
-        List<Employee> employeeList =employeeService.getEmployeeListSortedByName();
+    @GetMapping("/employees/sort-by-name")
+    public ResponseEntity<List<EmployeeDto>> getEmployeeListSortedByName(){
+        List<EmployeeDto> employeeList =employeeService.getEmployeeListSortedByName();
         return new ResponseEntity<>(employeeList,HttpStatus.OK);
     }
 
-    @GetMapping("employees/names")
+    @GetMapping("/employees/names")
     public ResponseEntity<List<String>> getAllEmployeeName(){
          List<String> employeeListName=employeeService.getAllEmployeesName();
          return new ResponseEntity<>(employeeListName,HttpStatus.OK);
     }
 
-    @GetMapping("employees/{empId}")
-    public ResponseEntity<Employee> getEmployeeById(@PathVariable("empId") UUID id){
-        Employee employee =employeeService.getEmployeeById(id);
+    @GetMapping("/employees/{empId}")
+    public ResponseEntity<EmployeeDto> getEmployeeById(@PathVariable("empId") UUID id){
+        EmployeeDto employee =employeeService.getEmployeeById(id);
         return new ResponseEntity<>(employee,HttpStatus.OK);
     }
+
+    @DeleteMapping("/employees")
+    public ApiResponse deleteALlEmployee(){
+        employeeService.deleteAllEmployee();
+        return new ApiResponse("All Employees Deleted Successfully","Success");
+    }
+
 
 
 
