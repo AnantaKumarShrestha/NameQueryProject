@@ -15,7 +15,7 @@ public interface EmployeeService {
 
     List<Employee> getEmployeeListSortedByName();
 
-    List<String> getEmployeeName();
+    List<String> getAllEmployeesName();
 
     Employee getEmployeeById(UUID id);
 

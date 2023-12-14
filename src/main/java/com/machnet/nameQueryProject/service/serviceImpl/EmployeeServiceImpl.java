@@ -1,5 +1,6 @@
 package com.machnet.nameQueryProject.service.serviceImpl;
 
+import com.machnet.nameQueryProject.Exception.EmployeeNotFoundException;
 import com.machnet.nameQueryProject.db.EmployeeRepo;
 import com.machnet.nameQueryProject.model.Employee;
 import com.machnet.nameQueryProject.service.EmployeeService;
@@ -7,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
 
 @Service
@@ -36,13 +38,13 @@ public class EmployeeServiceImpl implements EmployeeService {
     }
 
     @Override
-    public List<String> getEmployeeName() {
+    public List<String> getAllEmployeesName() {
         return employeeRepo.getEmployeeName();
     }
 
     @Override
     public Employee getEmployeeById(UUID id) {
-        return employeeRepo.getEmployeeByID(id);
+        return Optional.ofNullable(employeeRepo.getEmployeeByID(id)).orElseThrow(()->new EmployeeNotFoundException(id));
     }
 
 

@@ -1,6 +1,5 @@
 package com.machnet.nameQueryProject.restController;
 
-import com.machnet.nameQueryProject.db.EmployeeRepo;
 import com.machnet.nameQueryProject.model.Employee;
 import com.machnet.nameQueryProject.service.EmployeeService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -45,7 +44,7 @@ public class EmployeeController {
 
     @GetMapping("employees/names")
     public ResponseEntity<List<String>> getAllEmployeeName(){
-         List<String> employeeListName=employeeService.getEmployeeName();
+         List<String> employeeListName=employeeService.getAllEmployeesName();
          return new ResponseEntity<>(employeeListName,HttpStatus.OK);
     }
 
