@@ -25,7 +25,7 @@ public interface EmployeeRepo extends CrudRepository<Employee, UUID> {
      @Query(name="employeeName")
     List<String> getEmployeeName();
 
-     @Query(name = "employeeSalaryBetween")
-     List<Employee> getEmployeeSalaryBetween();
+     @Query(name = "getEmployeeById")
+    Employee getEmployeeByID(@Param("id") UUID id);
 
 }
